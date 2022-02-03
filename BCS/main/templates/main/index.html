@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Отправить транзакцию</button>
+            </form>
+        </div>
+        <div>
+        <h1>Список транзакций</h1>
+        {% if transactions %}
+            {% for el in transactions %}
+                <div class="alert alert-warning">
+                    <p>ID транзакции: {{ el.trans_address }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>В базе данных нет транзакций</p>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}
